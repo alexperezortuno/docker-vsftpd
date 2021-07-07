@@ -1,0 +1,22 @@
+version: "3.2"
+
+services:
+    ftp:
+        container_name: ftp
+        image: ftp:develop
+        network_mode: host
+        environment:
+            - FTP_USER=ftp_user
+            - FTP_PASS=123456789
+            - PASV_ADDRESS_RESOLVE=YES
+            - PASV_ADDR_RESOLVE=YES
+            - PASV_MIN_PORT=21100
+            - PASV_MAX_PORT=21110
+            - PASV_ADDRESS_ENABLE=YES
+            - PASV_ENABLE=YES
+        volumes:
+            - ./home:/home/vsftpd
+            - ./logs:/var/log/vsftpd
+        expose:
+            - 2221:21
+            - 2220:20
